@@ -1,8 +1,13 @@
-#Theory
-##Universal algorithm
+# Theory
+
+## Universal algorithm
+
 ![Alt text](./theory.svg)
-##Real world
-###General strategy
+
+## Real world
+
+### General strategy
+
 As mentioned before in general I decided to use mixed strategy. To implement mixed strategy there must be set of pure strategy.
 My choose are:
 #### Overall Median Plus Constant
@@ -11,34 +16,34 @@ My choose are:
 #### Last opponent bid plus Constant
 #### Round to win average(current cash / minimum round to win number)
 
-###Corner cases
-####Single round/Last round
+### Corner cases
+#### Single round/Last round
 Obviously in this case we are faced with fully determined state, so implementation should decide is there any sense to make
 a bid greater than 0
-#####Cache limit MU lesser or equal 0.5 X QU (MU deficit)
+##### Cache limit MU lesser or equal 0.5 X QU (MU deficit)
 In this case there will be at least one round with zero bid or every bids will be 1 MU
-#####Opponent out of cache
+##### Opponent out of cache
 Again, fully determined state, so implementation should decide is there any sense to make
 a bid greater than 0
-#####Opponents max bids too small
+##### Opponents max bids too small
 Opponent overall cache n times lesser than mine where n - count of rounds need to win left for 
 overall victory
 
-#Practice
+# Practice
 In general there three goals:
 * provide some strategies set(pure and coner cases)
 * implement [Bidder](src/main/java/auction/Bidder.java) interface with supported strategies customization
 * try to find better combination of strategies
-##Strategies
+## Strategies
 There are two kinds of strategies:
-###Corner Case Strategies:
+### Corner Case Strategies:
 For some special cases there is set of strategies:
 * [CacheDeficitStrategy](src/main/java/auction/strategy/corner/CacheDeficitStrategy.java)    
 * [LastRoundStrategy](src/main/java/auction/strategy/corner/LastRoundStrategy.java)    
 * [OpponentOutOfCacheStrategy](src/main/java/auction/strategy/corner/OpponentOutOfCacheStrategy.java)    
 * [OpponentBidTooSmallStrategy](src/main/java/auction/strategy/corner/OpponentBidTooSmallStrategy.java)    
 
-###Pure Strategies:
+### Pure Strategies:
 For general bids algorithms:
 *[LastOpponentBidPlusConstantStrategy](src/main/java/auction/strategy/pure/LastOpponentBidPlusConstantStrategy.java)
 *[LastWinnerPlusConstantStrategy](src/main/java/auction/strategy/pure/LastWinnerPlusConstantStrategy.java)
@@ -49,7 +54,7 @@ For general bids algorithms:
 Obviously there is some basic set of strategies and it could be improved
 
 
-##Bidder implementation
+## Bidder implementation
 There is [AbstractBidder](src/main/java/auction/AbstractBidder.java) implementation of Bidder interface that provide two
 important features:
 * configure collection of Corner Case Strategies to be applied
@@ -57,7 +62,7 @@ important features:
 
 So there is two child of the AbstractBidder to provide Pure strategy based bidder an Mixed Strategy based bidder 
 
-###winner
+### winner
 [Simple test](src/test/java/auction/utils/Competition.java) produce
 
 * best combination for pure strategy:
