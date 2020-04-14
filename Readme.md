@@ -9,7 +9,7 @@
 ### General strategy
 
 As mentioned before in general I decided to use mixed strategy. To implement mixed strategy there must be set of pure strategy, e.g
- Overall Median Plus Constant,  Opponent Median Plus Constant, Last winner bid plus Constant, Last opponent bid plus Constant, etc. 
+ "Overall Median Plus Constant",  "Opponent Median Plus Constant", "Last winner bid plus Constant", "Last opponent bid plus Constant", etc. 
 
 ### Corner cases
 Besights general strategy there is some very specific corner cases.
@@ -49,7 +49,7 @@ For general bids algorithms:
 * [OpponentMedianPlusConstantStrategy](src/main/java/auction/strategy/pure/OpponentMedianPlusConstantStrategy.java)
 * [RoundToWinAverageStrategy](src/main/java/auction/strategy/pure/RoundToWinAverageStrategy.java)
 
-Obviously there is some basic set of strategies and it could be improved
+Obviously there is some basic set of strategies and it could be improved.
 
 ## Bidder implementation
 There is [AbstractBidder](src/main/java/auction/AbstractBidder.java) implementation of Bidder interface that provide two
