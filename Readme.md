@@ -8,15 +8,11 @@
 
 ### General strategy
 
-As mentioned before in general I decided to use mixed strategy. To implement mixed strategy there must be set of pure strategy.
-My choose are:
-#### Overall Median Plus Constant
-#### Opponent Median Plus Constant
-#### Last winner bid plus Constant
-#### Last opponent bid plus Constant
-#### Round to win average(current cash / minimum round to win number)
+As mentioned before in general I decided to use mixed strategy. To implement mixed strategy there must be set of pure strategy, e.g
+ Overall Median Plus Constant,  Opponent Median Plus Constant, Last winner bid plus Constant, Last opponent bid plus Constant, etc. 
 
 ### Corner cases
+Besights general strategy there is some very specific corner cases.
 #### Single round/Last round
 Obviously in this case we are faced with fully determined state, so implementation should decide is there any sense to make
 a bid greater than 0
@@ -30,9 +26,11 @@ Opponent overall cache n times lesser than mine where n - count of rounds need t
 overall victory
 
 # Practice
-In general there three goals:
-* provide some strategies set(pure and coner cases)
-* implement [Bidder](src/main/java/auction/Bidder.java) interface with supported strategies customization
+I'm not good enough in theory, so main goal of my implementation is provide flexible tool with some basic algorithms and availability for easy extension and combining defferent strategies.
+
+In general there three directions:
+* provide some strategies set(pure and corner cases)
+* implement [Bidder](src/main/java/auction/Bidder.java) interface with strategies customization support
 * try to find better combination of strategies
 ## Strategies
 There are two kinds of strategies:
@@ -45,14 +43,13 @@ For some special cases there is set of strategies:
 
 ### Pure Strategies:
 For general bids algorithms:
-*[LastOpponentBidPlusConstantStrategy](src/main/java/auction/strategy/pure/LastOpponentBidPlusConstantStrategy.java)
-*[LastWinnerPlusConstantStrategy](src/main/java/auction/strategy/pure/LastWinnerPlusConstantStrategy.java)
-*[MedianPlusConstantStrategy](src/main/java/auction/strategy/pure/MedianPlusConstantStrategy.java)
-*[OpponentMedianPlusConstantStrategy](src/main/java/auction/strategy/pure/OpponentMedianPlusConstantStrategy.java)
-*[RoundToWinAverageStrategy](src/main/java/auction/strategy/pure/RoundToWinAverageStrategy.java)
+* [LastOpponentBidPlusConstantStrategy](src/main/java/auction/strategy/pure/LastOpponentBidPlusConstantStrategy.java)
+* [LastWinnerPlusConstantStrategy](src/main/java/auction/strategy/pure/LastWinnerPlusConstantStrategy.java)
+* [MedianPlusConstantStrategy](src/main/java/auction/strategy/pure/MedianPlusConstantStrategy.java)
+* [OpponentMedianPlusConstantStrategy](src/main/java/auction/strategy/pure/OpponentMedianPlusConstantStrategy.java)
+* [RoundToWinAverageStrategy](src/main/java/auction/strategy/pure/RoundToWinAverageStrategy.java)
 
 Obviously there is some basic set of strategies and it could be improved
-
 
 ## Bidder implementation
 There is [AbstractBidder](src/main/java/auction/AbstractBidder.java) implementation of Bidder interface that provide two
@@ -62,7 +59,7 @@ important features:
 
 So there is two child of the AbstractBidder to provide Pure strategy based bidder an Mixed Strategy based bidder 
 
-### winner
+### Winner
 [Simple test](src/test/java/auction/utils/Competition.java) produce
 
 * best combination for pure strategy:
@@ -89,5 +86,6 @@ Best delta  may change depends of initial auction values and actually results fo
                                 .build();
                                
 ```
-Best delta combination may change depends of initial auction values 
+
+Best delta combination may change depends of initial auction values. So besights adding new algorithms one of possible improvement is to provide posibility to choose strategies and params depends on particular auction configuration.
  
