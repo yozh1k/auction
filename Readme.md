@@ -28,9 +28,9 @@ overall victory
 # Practice
 I'm not good enough in theory, so main goal of my implementation is provide flexible tool with some basic algorithms and availability for easy extension and combining defferent strategies.
 
-In general there three directions:
+In general there there is three steps:
 * provide some strategies set(pure and corner cases)
-* implement [Bidder](src/main/java/auction/Bidder.java) interface with strategies customization support
+* implement [Bidder](src/main/java/auction/Bidder.java) interface with flexible strategies customization support
 * try to find better combination of strategies
 ## Strategies
 There are two kinds of strategies:
